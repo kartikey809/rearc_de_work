@@ -1,0 +1,48 @@
+{
+  "version": "44.0.0",
+  "files": {
+    "8040d6f53702b32300df73c9977f7c1953a8cf52fd95428bbc746b2ceab45cb1": {
+      "displayName": "IngestLambda/Code",
+      "source": {
+        "path": "asset.8040d6f53702b32300df73c9977f7c1953a8cf52fd95428bbc746b2ceab45cb1",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "8040d6f53702b32300df73c9977f7c1953a8cf52fd95428bbc746b2ceab45cb1.zip",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "df69c3dba2b023d03d74ddfe0497492b2368f89e1b5a7211979ee7d05918a2ac": {
+      "displayName": "EdaReportLambda/Code",
+      "source": {
+        "path": "asset.df69c3dba2b023d03d74ddfe0497492b2368f89e1b5a7211979ee7d05918a2ac",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "df69c3dba2b023d03d74ddfe0497492b2368f89e1b5a7211979ee7d05918a2ac.zip",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    },
+    "819a9ea7297a4d5999809588cba8e657040f81cd4cca9edd3be307a5f1224eb7": {
+      "displayName": "RearcAsnStack Template",
+      "source": {
+        "path": "RearcAsnStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "819a9ea7297a4d5999809588cba8e657040f81cd4cca9edd3be307a5f1224eb7.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

@@ -1,0 +1,528 @@
+{
+  "version": "44.0.0",
+  "artifacts": {
+    "RearcAsnStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "RearcAsnStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "RearcAsnStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "RearcAsnStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/819a9ea7297a4d5999809588cba8e657040f81cd4cca9edd3be307a5f1224eb7.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "RearcAsnStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "RearcAsnStack.assets"
+      ],
+      "metadata": {
+        "/RearcAsnStack/BlsStagingBucket/Notifications/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BlsStagingBucketNotifications856F1A43"
+          }
+        ],
+        "/RearcAsnStack/IngestLambda": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "environment": "*",
+              "timeout": "*",
+              "code": "*",
+              "handler": "*",
+              "runtime": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addEnvironment": [
+                "*",
+                "*"
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/IngestLambda/ServiceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              },
+              "managedPolicies": [
+                {
+                  "managedPolicyArn": "*"
+                }
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/IngestLambda/ServiceRole/ImportServiceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/RearcAsnStack/IngestLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestLambdaServiceRole18CD342B"
+          }
+        ],
+        "/RearcAsnStack/IngestLambda/ServiceRole/DefaultPolicy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/IngestLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestLambdaServiceRoleDefaultPolicyA78EFF9F"
+          }
+        ],
+        "/RearcAsnStack/IngestLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestLambda9890CC8D"
+          }
+        ],
+        "/RearcAsnStack/DailyTrigger": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "schedule": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addEventPattern": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addTarget": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/DailyTrigger/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DailyTrigger6DE30C2B"
+          }
+        ],
+        "/RearcAsnStack/DailyTrigger/AllowEventRuleRearcAsnStackIngestLambda870C217C": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DailyTriggerAllowEventRuleRearcAsnStackIngestLambda870C217CB9A14A72"
+          }
+        ],
+        "/RearcAsnStack/PopulationSQS": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "visibilityTimeout": "*"
+            }
+          }
+        ],
+        "/RearcAsnStack/PopulationSQS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PopulationSQS117274FD"
+          }
+        ],
+        "/RearcAsnStack/PopulationSQS/Policy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "queues": [
+                "*"
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/PopulationSQS/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PopulationSQSPolicy503D21EC"
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "environment": "*",
+              "timeout": "*",
+              "code": "*",
+              "handler": "*",
+              "runtime": "*"
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addEnvironment": [
+                "*",
+                "*"
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda/ServiceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              },
+              "managedPolicies": [
+                {
+                  "managedPolicyArn": "*"
+                }
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda/ServiceRole/ImportServiceRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EdaReportLambdaServiceRole78759E14"
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda/ServiceRole/DefaultPolicy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EdaReportLambdaServiceRoleDefaultPolicy1460E344"
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EdaReportLambda4AADDB73"
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda/SqsEventSource:RearcAsnStackPopulationSQS8AB4C0E8": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "target": "*",
+              "batchSize": "*",
+              "maxBatchingWindow": "*",
+              "maxConcurrency": "*",
+              "reportBatchItemFailures": "*",
+              "enabled": "*",
+              "eventSourceArn": "*",
+              "filters": "*",
+              "filterEncryption": "*",
+              "metricsConfig": "*"
+            }
+          }
+        ],
+        "/RearcAsnStack/EdaReportLambda/SqsEventSource:RearcAsnStackPopulationSQS8AB4C0E8/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EdaReportLambdaSqsEventSourceRearcAsnStackPopulationSQS8AB4C0E8017EAE86"
+          }
+        ],
+        "/RearcAsnStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": {
+              "assumedBy": {
+                "principalAccount": "*",
+                "assumeRoleAction": "*"
+              }
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addManagedPolicy": [
+                {
+                  "managedPolicyArn": "*"
+                }
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachInlinePolicy": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addToPrincipalPolicy": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/ImportRole": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          }
+        ],
+        "/RearcAsnStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+          }
+        ],
+        "/RearcAsnStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy": [
+          {
+            "type": "aws:cdk:analytics:construct",
+            "data": "*"
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "attachToRole": [
+                "*"
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          },
+          {
+            "type": "aws:cdk:analytics:method",
+            "data": {
+              "addStatements": [
+                {}
+              ]
+            }
+          }
+        ],
+        "/RearcAsnStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36"
+          }
+        ],
+        "/RearcAsnStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691"
+          }
+        ],
+        "/RearcAsnStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/RearcAsnStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/RearcAsnStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/RearcAsnStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "RearcAsnStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  },
+  "minimumCliVersion": "2.1018.0"
+}
