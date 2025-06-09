@@ -1,6 +1,6 @@
 
 # Please find Readme file
-
+This quest leverages the AWS Cloud Development Kit (CDK) to deploy a scalable, serverless data pipeline for ingesting, processing, and analyzing labor and population datasets. It features Lambda functions that automate the extraction of data from public sources like the Bureau of Labor Statistics (BLS) and the Data USA API, storing raw data in Amazon S3. Additionally, it performs exploratory data analysis (EDA) to generate  reports
 Folder Structure here  :
 
 ## Google Colab NB  - to preview notebook
