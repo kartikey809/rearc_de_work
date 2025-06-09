@@ -11,18 +11,18 @@ bls_S3 = "bls-data/pr.data.0.Current"
 pop_S3 = "datausa/us_population.json"
 
 def lambda_handler(event, context):
-    # Load BLS CSV
+    # Load BLS data as usv (using Pandas)
     bls_obj = s3.get_object(Bucket=bucket, Key=bls_S3)
     bls_df = pd.read_csv(io.BytesIO(bls_obj['Body'].read()), sep='\t')
     print("BLS Data Loaded:", bls_df.shape)
 
-    # Load Population JSON
+    # Load Population JSON from s3 bucket where data was staged
     pop_obj = s3.get_object(Bucket=bucket, Key=pop_S3)
     pop_json = json.loads(pop_obj['Body'].read())
     pop_df = pd.DataFrame(pop_json['data'])
     print("Population Data Loaded:", pop_df.shape)
 
-    # Standardize formatting
+    # Standardize formatting and data preprocessing here
     for df in [bls_df, pop_df]:
         df.columns = df.columns.str.strip().str.lower()
         str_cols = df.select_dtypes(include='object').columns
@@ -39,14 +39,14 @@ def lambda_handler(event, context):
     print("Mean USA Population (2013-2018):", mean_population)
     print("Std Dev USA Population (2013-2018):", std_population)
 
-    # Question 2: Best year by value sum for each series_id
+    # Question 2: Best year by value sum for each series_id - group by series id and year, and take first row as best year value
     grouped = bls_df.groupby(['series_id', 'year'], as_index=False)['value'].sum()
     grouped = grouped.dropna(subset=['value'])
     grouped_sorted = grouped.sort_values(['series_id', 'value'], ascending=[True, False])
     best_years = grouped_sorted.drop_duplicates(subset=['series_id'], keep='first').reset_index(drop=True)
     print("Best Years Computed:", best_years.shape)
 
-    # Question 3: Join filtered data on population
+    # Question 3: Join filtered data on population -on year
     filtered_bls_df = bls_df[(bls_df['series_id'] == 'PRS30006032') & (bls_df['period'] == 'Q01')]
     report = pd.merge(filtered_bls_df, pop_df, on='year', how='left')
     final_report = report[['series_id', 'year', 'period', 'value', 'population']]
