@@ -1,19 +1,20 @@
 
-# Welcome to your CDK Python project!
+# Please find Readme file
 
 Folder Structure here  :
 
 react_asn/
 ├── app.py
 ├── react_asn/
-│   ├── __init__.py
-│   ├── react_asn_stack.py       ← Your main CDK stack file
-│   └── lambdas/
-│       ├── bls_and_population_ingest/
-│       │   ├── ingest.py
-│       │   └── lambda_function.py
-│       └── eda_report/
-│           └── lambda_function.py
+│ ├── init.py
+│ ├── react_asn_stack.py ← Your main CDK stack file
+│ └── lambdas/
+│ ├── bls_and_population_ingest/
+│ │ ├── ingest.py
+│ │ └── lambda_function.py
+│ └── eda_report/
+│ └── lambda_function.py
+
 
 Functions :
 
