@@ -3,17 +3,17 @@
 
 Folder Structure here  :
 
-react_asn/
+```react_asn/
 ├── app.py
 ├── react_asn/
 │ ├── init.py
-│ ├── react_asn_stack.py ← Your main CDK stack file
+│ ├── react_asn_stack.py
 │ └── lambdas/
 │ ├── bls_and_population_ingest/
 │ │ ├── ingest.py
 │ │ └── lambda_function.py
 │ └── eda_report/
-│ └── lambda_function.py
+│ └── lambda_function.py```
 
 
 Functions :
