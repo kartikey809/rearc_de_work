@@ -1,5 +1,6 @@
 import logging
-from rearc_asn.lambdas.bls_and_population_ingest.ingest import sync_files, fetch_population_data, upload_to_s3
+from ingest import sync_files, fetch_population_data, upload_to_s3
+
 
 # logging
 logger = logging.getLogger()
