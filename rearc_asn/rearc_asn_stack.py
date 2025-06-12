@@ -10,6 +10,7 @@ from aws_cdk import (
     aws_s3_notifications as s3n,
 )
 from constructs import Construct
+import os
 
 class RearcAsnStack(Stack): 
 
@@ -18,12 +19,32 @@ class RearcAsnStack(Stack):
 
         bucket = s3.Bucket.from_bucket_name(self, "BlsStagingBucket", "bucket-staging-s3")
 
-        # BLS + usa POP ingestion Lambda
+        # Common access dep layer for requirements
+        layer = _lambda.LayerVersion(
+            self, "CommonDependenciesLayer",
+            code=_lambda.Code.from_asset("rearc_asn/lambda_layer",
+                bundling=_lambda.BundlingOptions(
+                    image=_lambda.Runtime.PYTHON_3_11.bundling_image,
+                    command=[
+                        "bash", "-c",
+                        "pip install -r /asset-input/requirements.txt -t /asset-output/python && cp -r /asset-input/* /asset-output/"
+                    ],
+                    volumes=[],
+                    working_directory="/asset-input",
+                    user="root"
+                )
+            ),
+            compatible_runtimes=[_lambda.Runtime.PYTHON_3_11],
+            description="Layer containing dependencies from requirements.txt",
+        )
+
+        # BLS + USA POP ingestion Lambda
         ingest_lambda = _lambda.Function(
             self, "IngestLambda",
             runtime=_lambda.Runtime.PYTHON_3_11,
             handler="lambda_function.lambda_handler",
             code=_lambda.Code.from_asset("rearc_asn/lambdas/bls_and_population_ingest"),
+            layers=[layer],
             environment={
                 "BUCKET_NAME": "bucket-staging-s3"
             },
@@ -39,7 +60,7 @@ class RearcAsnStack(Stack):
         rule.add_target(targets.LambdaFunction(ingest_lambda))
 
         # SQS queue for EDA trigger
-        queue = sqs.Queue(self, "PopulationSQS",visibility_timeout=Duration.seconds(600) )
+        queue = sqs.Queue(self, "PopulationSQS", visibility_timeout=Duration.seconds(600))
 
         # EDA Lambda
         eda_lambda = _lambda.Function(
@@ -47,6 +68,7 @@ class RearcAsnStack(Stack):
             runtime=_lambda.Runtime.PYTHON_3_11,
             handler="lambda_function.lambda_handler",
             code=_lambda.Code.from_asset("rearc_asn/lambdas/eda_report"),
+            layers=[layer],
             environment={
                 "BUCKET_NAME": "bucket-staging-s3"
             },
