@@ -66,7 +66,7 @@ class RearcAsnStack(Stack):
         eda_lambda = _lambda.Function(
             self, "EdaReportLambda",
             runtime=_lambda.Runtime.PYTHON_3_11,
-            handler="lambda_function.lambda_handler",
+            handler="eda_lambda.lambda_handler",
             code=_lambda.Code.from_asset("rearc_asn/lambdas/eda_report"),
             layers=[layer],
             environment={
